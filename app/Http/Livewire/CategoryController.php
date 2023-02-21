@@ -12,29 +12,32 @@ class CategoryController extends Component
 
     private $pagination = 10;
 
-    public function mount(){
+    public function mount()
+    {
         $this->pageTitle = 'Listado';
         $this->componentName = 'Categorías';
-
     }
 
     public function render()
     {
-        if(strlen($this->search) > 0)
+        if (strlen($this->search) > 0)
             $data = Category::where('name', 'LIKE',  '%' . $this->search  . '%')
-            ->select('categories.*')
-            ->orWhere('categories.description', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('categories.code', 'LIKE', '%' . $this->search . '%')
-            ->orderBy('name', 'DESC')
-                       ->paginate($this->pagination);
+                ->select('categories.*')
+                ->orWhere('description', 'LIKE', '%' . $this->search . '%')
+                ->orWhere('code', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('name', 'DESC')
+                ->paginate($this->pagination);
         else
             $data = Category::where('name', 'LIKE',  '%' . $this->search  . '%')
-            ->select('categories.*')
-            ->orWhere('categories.description', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('categories.code', 'LIKE', '%' . $this->search . '%')
-            ->orderBy('name', 'DESC')
-                   ->paginate($this->pagination);
+                ->select('categories.*')
+                ->orWhere('description', 'LIKE', '%' . $this->search . '%')
+                ->orWhere('code', 'LIKE', '%' . $this->search . '%')
+                ->orderBy('name', 'DESC')
+                ->paginate($this->pagination);
 
-        return view('livewire.Categories.index', ['data' => $data ]);
+        return view('livewire.Categories.index', ['data' => $data])
+            ->extends('layouts.admin')
+            ->section('content')
+            ->section('js');
     }
 }

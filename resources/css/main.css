@@ -25,5 +25,10 @@
 }
 
 .modal-title {
+    line-height: 1.5;
+}
+
+
+.modal-header h5{
     margin-bottom: 15px!important;
 }

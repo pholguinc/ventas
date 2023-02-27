@@ -22,7 +22,7 @@ const mix = require('laravel-mix');
 .scripts([
     'resources/js/theme/app.min.js',
     'resources/js/theme/custom.js',
-    'resources/js/theme/scripts.js'
+    'resources/js/theme/scripts.js',
 ], 'public/js/app.js')
 
 .copy('resources/fonts', 'public/fonts')

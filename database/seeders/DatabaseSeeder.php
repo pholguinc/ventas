@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         Category::factory(30)->create();
+
     }
 }

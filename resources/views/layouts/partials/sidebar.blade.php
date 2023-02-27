@@ -28,7 +28,7 @@
       <li class="dropdown">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="list"></i><span>Mantenimiento</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="email-inbox.html">Categorías</a></li>
+          <li><a class="nav-link" href="/admin/categorias">Categorías</a></li>
           <li><a class="nav-link" href="email-compose.html">Clientes</a></li>
           <li><a class="nav-link" href="email-read.html">Marcas</a></li>
           <li><a class="nav-link" href="email-read.html">Presentación</a></li>

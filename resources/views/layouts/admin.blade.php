@@ -29,12 +29,14 @@
                 @include('layouts.partials.colors')
                 @yield('js')
             </div>
-            @include('layouts.partials.footer')
+
         </div>
+
     </div>
+    @include('layouts.partials.footer')
     <!-- General JS Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @livewireScripts
 </body>
 

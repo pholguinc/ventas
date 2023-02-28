@@ -5,6 +5,6 @@
                 <h5 class="modal-title text-white">
                     <b>{{ $componentName }}</b> | {{ $selected_id > 0 ? 'Editar' : 'Crear' }}
                 </h5>
-                <h6 class="text-center" wire:loading>Por favor, espere...</h6>
+                <h6 class="text-center text-white" wire:loading>Por favor, espere...</h6>
             </div>
             <div class="modal-body">

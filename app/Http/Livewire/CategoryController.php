@@ -54,6 +54,7 @@ class CategoryController extends Component
     }
 
     public function Store(){
+        sleep(3);
         $rules = [
             'name' => 'required|unique:categories|min:3',
             'code' => 'required|min:3'
@@ -81,23 +82,23 @@ class CategoryController extends Component
 
 
     public function Update(){
-
+        sleep(3);
         $rules = [
-            'name' => "required|unique:categories|min:3,name, {$this->selected_id}",
-            'code' => 'required'
+            'name' => "required|min:3,name, {$this->selected_id}",
+            'code' => "required|min:3,code, {$this->selected_id}"
         ];
 
         $messages = [
             'name.required' => 'El nombre es requerido',
-            'name.unique' => 'Ya existe un registro con este nombre',
             'name.min' => 'El nombre de la categoría debe tener al menos 3 caracteres',
             'code.required' => 'El código es requerido',
-            'code.min|min:3' => 'El código de la categoría debe tener al menos 3 caracteres',
+            'code.min' => 'El código de la categoría debe tener al menos 3 caracteres',
         ];
 
         $this->validate($rules, $messages);
 
         $category = Category::find($this->selected_id);
+
         $category->update([
             'name' => $this->name,
             'code' => $this->code,

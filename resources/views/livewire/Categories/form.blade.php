@@ -37,6 +37,13 @@
             <span class="ml-2 text-danger">
                 {{ $message }}
             </span>
+            <script>
+                Swal.fire({
+                    icon: 'error'
+                    , title: 'Oops...'
+                    , text: 'Por favor, rellene todos los campos necesarios'
+                })
+            </script>
             @enderror
         </div>
     </div>

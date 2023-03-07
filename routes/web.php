@@ -2,6 +2,8 @@
 
 use App\Http\Livewire\CategoryController;
 use App\Http\Livewire\InfoController;
+use App\Http\Livewire\PosController;
+use App\Http\Livewire\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +33,6 @@ Route::get('/', function () {
 
 
 Route::get('/admin/categorias', CategoryController::class);
+Route::get('/admin/productos', ProductController::class);
+Route::get('/admin/pos', PosController::class);
 Route::get('/admin/info', InfoController::class);

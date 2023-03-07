@@ -35,9 +35,11 @@
     </div>
     @include('layouts.partials.footer')
     <!-- General JS Scripts -->
+
+    @livewireScripts
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @livewireScripts
+
 </body>
 
 </html>

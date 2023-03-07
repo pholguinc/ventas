@@ -32,3 +32,49 @@
 .modal-header h5{
     margin-bottom: 15px!important;
 }
+
+
+/*style list products*/
+.list-group-item{
+    width:622px;border:1px solid #f1f1f1;
+}
+.flex-row{
+    border:1px solid #ccd2db;margin-right:-17px;margin-top:-10px;margin-left:-19px;margin-bottom:-10px;
+}
+.divimg{
+    border-left: 1px solid #ccd2db;
+    border-right: 1px solid #ccd2db;
+}
+
+
+div#result{
+    background: #04061eb0!important;
+    color: #fff;
+}
+
+.hr-result{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+
+.connect-sorting {
+    padding: 15px;
+    background: #e0e6ed;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 4px 6px 0 rgb(85 85 85 / 8%), 0 1px 20px 0 rgb(0 0 0 / 7%), 0px 1px 11px 0px rgb(0 0 0 / 7%);
+    -moz-box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.08), 0 1px 20px 0 rgba(0, 0, 0, 0.07), 0px 1px 11px 0px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 4px 6px 0 rgb(85 85 85 / 8%), 0 1px 20px 0 rgb(0 0 0 / 7%), 0px 1px 11px 0px rgb(0 0 0 / 7%);
+}
+
+
+.connect-sorting-content {
+    min-height: 82px;
+}
+
+
+h1#head-total{
+    color: #8BC34A !important;
+}

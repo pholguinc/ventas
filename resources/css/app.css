@@ -1,3 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+#image-file{
+    border: 0;
+    background-image: linear-gradient(
+        150deg,
+        #9500ff,
+        #09f,
+        #00ddff
+    );
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
+    transition: .3s;
+}
+#image-file:active{
+    transform: scale(0.9);
+}
+
+#custom-text{
+    display: flex;
+    justify-content: center;
+}
+
+
+.button-gradient{
+    border: 0;
+    background-image: linear-gradient(
+        150deg,
+        #9500ff,
+        #09f,
+        #00ddff
+    );
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
+}
+
+

@@ -31,33 +31,6 @@ class PosController extends Component
         $this->itemsQuantity = Cart::getTotalQuantity();
     }
 
-    public function updatedSearch(){
-        $this->validate([
-            "search" => "required|min:2"
-        ]);
-
-        $this->products = Product::where("name", "like", trim($this->search) . "%")
-            ->take(3)
-            ->get();
-    }
-
-    public function asignProduct($name)
-    {
-        $this->search = $name;
-    }
-
-    public function asignFirst()
-    {
-        $product = Product::where("name", "like", trim($this->search) . "%")->first();
-        if($product)
-        {
-            $this->search = $product->name;
-        }
-        else
-        {
-            $this->search = "...";
-        }
-    }
 
     public function render()
     {
@@ -78,14 +51,22 @@ class PosController extends Component
 
     protected $listeners = [
         'scan-code' => 'ScanCode',
+        'scan-code-byid' => 'ScanCodeById',
         'removeItem' => 'removeItem',
         'clearCart' => 'clearCart',
         'saveSale' => 'saveSale'
     ];
 
+    public function ScanCodeById(Product $product)
+    {
+        $this->increaseQty($product);
+    }
+
 
     public function ScanCode($code, $cant=1){
-        //37820/R2SN03508dd($code);
+
+        //dd($code);
+
         $product =  Product::where('code', $code)->first();
 
         if($product == null || empty($product)){

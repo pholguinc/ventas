@@ -169,7 +169,10 @@ class ProductController extends Component
         $this->emit('product-update', 'Producto Actualizado');
     }
 
-    protected $listeners = ['deleteRow' => 'Destroy'];
+    protected $listeners = [
+        'deleteRow' => 'Destroy',
+        'scan-code-byId' => 'scanCodeById'
+    ];
 
     public function Destroy(Product $product)
     {
@@ -200,4 +203,6 @@ class ProductController extends Component
         $this->selected_id = 0;
         $this->resetValidation();
     }
+
+
 }

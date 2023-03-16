@@ -1,7 +1,8 @@
 <script>
     try {
         onScan.attachTo(document, {
-            suffixKeyCodes: [13]
+            suffixKeyCodes: [13],
+            minLength: 6
             , onScan: function(code) {
                 console.log(code);
                 window.livewire.emit('scan-code', code)

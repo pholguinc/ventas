@@ -16,9 +16,7 @@
                     </div>
 
                     <div class="p-0 card-body">
-
                         @include('components.search')
-
                         <div class="table-responsive">
                             <table class="table table-striped table-hovered">
                                 <thead class="table-dark">
@@ -72,16 +70,12 @@
                                     @endif
                                 </tbody>
                             </table>
-                            <div class="row" style="margin:0!important;">
-                                <div class="col-sm-7">
-                                    <div class="float-left mt-2">
-                                        Mostrando {{ $data->firstItem() }} - {{ $data->lastItem() }} de {{ $data->total() }} registros
-                                    </div>
+                            <div style="margin:0!important; display:grid; justify-content:center;">
+                                <div class="mt-2 mb-3 text-center">
+                                    Mostrando {{ $data->firstItem() }} - {{ $data->lastItem() }} de {{ $data->total() }} registros
                                 </div>
-                                <div class="col-sm-5">
-                                    <div class="float-right">
-                                        {{ $data->links()}}
-                                    </div>
+                                <div class="d-flex justify-center">
+                                    {{ $data->links()}}
                                 </div>
                             </div>
 

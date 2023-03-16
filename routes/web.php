@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\BrandController;
 use App\Http\Livewire\CategoryController;
 use App\Http\Livewire\InfoController;
 use App\Http\Livewire\PosController;
@@ -33,6 +34,7 @@ Route::get('/', function () {
 
 
 Route::get('/admin/categorias', CategoryController::class);
+Route::get('/admin/marcas', BrandController::class);
 Route::get('/admin/productos', ProductController::class);
 Route::get('/admin/pos', PosController::class);
 Route::get('/admin/info', InfoController::class);

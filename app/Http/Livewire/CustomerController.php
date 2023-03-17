@@ -45,6 +45,100 @@ class CustomerController extends Component
             ->section('js');
     }
 
+    public function Store(){
+        $rules = [
+            'numDocument' => 'required|unique:customers',
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|unique:customers|email',
+            'address' => 'required'
+        ];
+
+        $messages = [
+            'numDocument.required' => 'El documento es requerido',
+            'numDocument.unique' => 'Ya existe un registro con este nombre',
+            'name.required' => 'El nombre es requerido',
+            'phone.required' => 'El teléfono es requerido',
+            'email.required' => 'El correo es requerido',
+            'email.unique' => 'Ya existe un registro con este nombre',
+            'address.required' => 'La dirección es requerida',
+        ];
+
+        $this->validate($rules, $messages);
+
+        Customer::create([
+            'numDocument' => $this->numDocument,
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'address' => $this->address,
+        ]);
+
+        $this->resetUI();
+        $this->emit('customer-added', 'Cliente Registrado');
+    }
+
+
+    public function Edit($id){
+        $record = Customer::find($id);
+        $this->numDocument = $record->numDocument;
+        $this->name = $record->name;
+        $this->phone = $record->phone;
+        $this->email = $record->email;
+        $this->address = $record->address;
+        $this->selected_id = $record->id;
+        $this->emit('show-modal', 'show modal');
+
+    }
+
+
+    public function Update(){
+        $rules = [
+            'numDocument' => "required|unique:customers,numDocument, {$this->selected_id}",
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => "required|email|unique:customers,email,{$this->selected_id}",
+            'address' => 'required'
+        ];
+
+        $messages = [
+            'numDocument.required' => 'El documento es requerido',
+            'numDocument.unique' => 'Ya existe un registro con este nombre',
+            'name.required' => 'El nombre es requerido',
+            'phone.required' => 'El teléfono es requerido',
+            'email.required' => 'El correo es requerido',
+            'email.unique' => 'Ya existe un registro con este nombre',
+            'address.required' => 'La dirección es requerida',
+        ];
+
+        $this->validate($rules, $messages);
+
+        $customers = Customer::find($this->selected_id);
+
+        $customers->update([
+            'numDocument' => $this->numDocument,
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'address' => $this->address,
+        ]);
+
+        $this->resetUI();
+        $this->emit('customer-update', 'Marca Actualizada');
+    }
+
+    protected $listeners = [
+        'deleteRow' => 'Destroy',
+    ];
+
+    public function Destroy(Customer $customer)
+    {
+
+        $customer->delete();
+        $this->resetUI();
+        $this->emit('customer-deleted', 'Marca Eliminada');
+    }
+
 
     public function searchCustomer(){
 
@@ -86,9 +180,6 @@ class CustomerController extends Component
             $this->address = $data['direccion'];
             //dd($data);
         }
-
-
-
 
 
     }

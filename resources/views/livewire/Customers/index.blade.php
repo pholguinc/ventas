@@ -23,24 +23,26 @@
                             <table class="table table-striped table-hovered">
                                 <thead class="table-dark">
                                     <th width="100px" class="text-center text-light">ID</th>
-                                    <th width="15%" class="text-center text-light">FOTO</th>
                                     <th class="text-center text-light">NOMBRE</th>
+                                    <th class="text-center text-light">RUC/DNI</th>
+                                    <th class="text-center text-light">TELÉFONO</th>
+                                    <th class="text-center text-light">CORREO</th>
                                     <th class="text-light">ACCIONES</th>
                                 </thead>
                                 <tbody>
-                                    @if ($brands->count())
-                                        @foreach ($brands as $brand)
+                                    @if ($customers->count())
+                                        @foreach ($customers as $customer)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td width="15%" class="text-center">
-                                                <img id="light-image" src="{{ asset('storage/brands/' . $brand->imagen) }}" alt="{{ $brand->name }}" class="mt-2 img-fluid" width="70" height="80">
-                                            </td>
-                                            <td class="text-center">{{ $brand->name }}</td>
+                                            <td class="text-center">{{ $customer->name }}</td>
+                                            <td class="text-center">{{ $customer->numDocument }}</td>
+                                            <td class="text-center">{{ $customer->phone }}</td>
+                                            <td class="text-center">{{ $customer->email }}</td>
                                             <td width="150px">
-                                                <a href="javascript:void(0);" wire:click="Edit({{ $brand->id }})" class="text-white btn btn-primary">
+                                                <a href="javascript:void(0);" wire:click="Edit({{ $customer->id }})" class="text-white btn btn-primary">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="javascript:void(0);" onclick="Confirm('{{ $brand->id }}')" class="text-white btn btn-danger">
+                                                <a href="javascript:void(0);" onclick="Confirm('{{ $customer->id }}')" class="text-white btn btn-danger">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -55,8 +57,13 @@
                                 </tbody>
                             </table>
                             <hr>
-                            <div class="float-right pr-5">
-                                    {{ $brands->links() }}
+                            <div style="margin:0!important; display:grid; justify-content:center;">
+                                <div class="mt-2 mb-3 text-center">
+                                    Mostrando {{ $customers->firstItem() }} - {{ $customers->lastItem() }} de {{ $customers->total() }} registros
+                                </div>
+                                <div class="d-flex justify-center">
+                                    {{ $customers->links()}}
+                                </div>
                             </div>
 
                         </div>
@@ -66,20 +73,11 @@
 
         </div>
     </div>
-
-    @include('livewire.Brands.form')
-
+    @include('livewire.Customers.form')
 </div>
 
 
 <script>
-    const realFileBtn = document.getElementById("real-file");
-    const imageFile = document.getElementById("image-file");
-    const customTxt = document.getElementById("custom-text");
-
-    imageFile.addEventListener("click", function() {
-        realFileBtn.click();
-    })
 
     document.addEventListener('DOMContentLoaded', function() {
 
@@ -87,7 +85,7 @@
             $('#modal').modal('show');
         });
 
-        window.livewire.on('brand-added', msg => {
+        window.livewire.on('customer-added', msg => {
             Swal.fire({
                 icon: 'success'
                 , title: 'Correcto'
@@ -95,7 +93,7 @@
             })
             $('#modal').modal('hide');
         });
-        window.livewire.on('product-update', msg => {
+        window.livewire.on('customer-update', msg => {
             Swal.fire({
                 icon: 'success'
                 , title: 'Correcto'

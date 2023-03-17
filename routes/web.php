@@ -2,9 +2,11 @@
 
 use App\Http\Livewire\BrandController;
 use App\Http\Livewire\CategoryController;
+use App\Http\Livewire\CustomerController;
 use App\Http\Livewire\InfoController;
 use App\Http\Livewire\PosController;
 use App\Http\Livewire\ProductController;
+use App\Http\Livewire\ProviderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +35,10 @@ Route::get('/', function () {
 });*/
 
 
-Route::get('/admin/categorias', CategoryController::class);
-Route::get('/admin/marcas', BrandController::class);
-Route::get('/admin/productos', ProductController::class);
-Route::get('/admin/pos', PosController::class);
-Route::get('/admin/info', InfoController::class);
+Route::get('/admin/categorias', CategoryController::class)->name('admin.categories');
+Route::get('/admin/marcas', BrandController::class)->name('admin.brands');
+Route::get('/admin/productos', ProductController::class)->name('admin.products');
+Route::get('/admin/pos', PosController::class)->name('admin.pos');
+Route::get('/admin/info', InfoController::class)->name('admin.info');
+Route::get('/admin/proveedores', ProviderController::class)->name('admin.providers');
+Route::get('/admin/clientes', CustomerController::class)->name('admin.customers');

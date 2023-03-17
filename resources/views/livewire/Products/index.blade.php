@@ -70,6 +70,7 @@
                                     @endif
                                 </tbody>
                             </table>
+                            <hr>
                             <div style="margin:0!important; display:grid; justify-content:center;">
                                 <div class="mt-2 mb-3 text-center">
                                     Mostrando {{ $data->firstItem() }} - {{ $data->lastItem() }} de {{ $data->total() }} registros

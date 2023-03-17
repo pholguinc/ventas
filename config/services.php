@@ -14,6 +14,12 @@ return [
     |
     */
 
+    'apisunat' => [
+        'token' => env('API_SUNAT_TOKEN'),
+        'urldni' => env('API_SUNAT_URL_DNI'),
+        'urlruc' => env('API_SUNAT_URL_RUC'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

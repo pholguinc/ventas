@@ -28,12 +28,11 @@
       <li class="dropdown">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="list"></i><span>Mantenimiento</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="/admin/categorias">Categorías</a></li>
-          <li><a class="nav-link" href="email-compose.html">Clientes</a></li>
-          <li><a class="nav-link" href="email-read.html">Marcas</a></li>
-          <li><a class="nav-link" href="email-read.html">Presentación</a></li>
-          <li><a class="nav-link" href="email-read.html">Productos</a></li>
-          <li><a class="nav-link" href="email-read.html">Proveedores</a></li>
+          <li><a class="nav-link" href="{{ route('admin.categories') }}">Categorías</a></li>
+          <li><a class="nav-link" href="{{ route('admin.customers') }}">Clientes</a></li>
+          <li><a class="nav-link" href="{{ route('admin.brands') }}">Marcas</a></li>
+          <li><a class="nav-link" href="{{ route('admin.products') }}">Productos</a></li>
+          <li><a class="nav-link" href="{{ route('admin.providers') }}">Proveedores</a></li>
         </ul>
       </li>
       <li class="dropdown">

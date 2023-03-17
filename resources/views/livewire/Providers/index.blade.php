@@ -23,29 +23,33 @@
                             <table class="table table-striped table-hovered">
                                 <thead class="table-dark">
                                     <th width="100px" class="text-center text-light">ID</th>
-                                    <th width="15%" class="text-center text-light">FOTO</th>
+                                    <th class="text-center text-light">RUC</th>
                                     <th class="text-center text-light">NOMBRE</th>
+                                    <th class="text-center text-light">TELEFÓNO</th>
+                                    <th class="text-center text-light">CORREO</th>
+                                    <th class="text-center text-light">DIRECCIÓN</th>
                                     <th class="text-light">ACCIONES</th>
                                 </thead>
                                 <tbody>
-                                    @if ($brands->count())
-                                        @foreach ($brands as $brand)
-                                        <tr>
-                                            <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td width="15%" class="text-center">
-                                                <img id="light-image" src="{{ asset('storage/brands/' . $brand->imagen) }}" alt="{{ $brand->name }}" class="mt-2 img-fluid" width="70" height="80">
-                                            </td>
-                                            <td class="text-center">{{ $brand->name }}</td>
-                                            <td width="150px">
-                                                <a href="javascript:void(0);" wire:click="Edit({{ $brand->id }})" class="text-white btn btn-primary">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="javascript:void(0);" onclick="Confirm('{{ $brand->id }}')" class="text-white btn btn-danger">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                    @if ($providers->count())
+                                    @foreach ($providers as $provider)
+                                    <tr>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                        <td class="text-center">{{ $provider->ruc }}</td>
+                                        <td class="text-center">{{ $provider->name }}</td>
+                                        <td class="text-center">{{ $provider->phone }}</td>
+                                        <td class="text-center">{{ $provider->email }}</td>
+                                        <td class="text-center">{{ $provider->address }}</td>
+                                        <td width="150px">
+                                            <a href="javascript:void(0);" wire:click="Edit({{ $provider->id }})" class="text-white btn btn-primary">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="javascript:void(0);" onclick="Confirm('{{ $provider->id }}')" class="text-white btn btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                     @else
                                     <tr>
                                         <td class="text-center font-weight-bold" colspan="8">No se encontraron resultados con su búsqueda</td>
@@ -55,8 +59,13 @@
                                 </tbody>
                             </table>
                             <hr>
-                            <div class="float-right pr-5">
-                                    {{ $brands->links() }}
+                            <div style="margin:0!important; display:grid; justify-content:center;">
+                                <div class="mt-2 mb-3 text-center">
+                                    Mostrando {{ $providers->firstItem() }} - {{ $providers->lastItem() }} de {{ $providers->total() }} registros
+                                </div>
+                                <div class="d-flex justify-center">
+                                    {{ $providers->links()}}
+                                </div>
                             </div>
 
                         </div>
@@ -66,28 +75,17 @@
 
         </div>
     </div>
-
-    @include('livewire.Brands.form')
-
+    @include('livewire.Providers.form')
 </div>
 
-
 <script>
-    const realFileBtn = document.getElementById("real-file");
-    const imageFile = document.getElementById("image-file");
-    const customTxt = document.getElementById("custom-text");
-
-    imageFile.addEventListener("click", function() {
-        realFileBtn.click();
-    })
-
     document.addEventListener('DOMContentLoaded', function() {
 
         window.livewire.on('show-modal', msg => {
             $('#modal').modal('show');
         });
 
-        window.livewire.on('brand-added', msg => {
+        window.livewire.on('provider-added', msg => {
             Swal.fire({
                 icon: 'success'
                 , title: 'Correcto'
@@ -95,7 +93,7 @@
             })
             $('#modal').modal('hide');
         });
-        window.livewire.on('product-update', msg => {
+        window.livewire.on('provider-update', msg => {
             Swal.fire({
                 icon: 'success'
                 , title: 'Correcto'
@@ -127,7 +125,5 @@
             }
         })
     }
-
-
 
 </script>

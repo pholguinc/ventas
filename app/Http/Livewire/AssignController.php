@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -28,7 +29,8 @@ class AssignController extends Component
         return 'vendor.livewire.bootstrap';
     }
 
-    public function mount(){
+    public function mount()
+    {
         $this->role = 'Elegir';
         $this->componentName = 'Asignar Permisos';
     }
@@ -37,54 +39,62 @@ class AssignController extends Component
     public function render()
     {
 
-        $permissions = Permission::select('name', 'id', DB::raw("0 as checked"))
-                                ->orderBy('name', 'asc')
-                                ->paginate($this->pagination);
+        $permissions = Permission::select('name', 'description', 'id', DB::raw("0 as checked"))
+            ->orderBy('name', 'asc')
+            ->paginate($this->pagination);
+
+
+        $roleCount = Role::with('permissions')->count();
 
 
 
         if ($this->role != 'Elegir') {
             $list = Permission::join('role_has_permissions as rp', 'rp.permission_id', 'permissions.id')
-                              ->where('role_id', $this->role)->pluck('permissions.id');
+                ->where('role_id', $this->role)->pluck('permissions.id');
             $this->old_permissions = $list;
         }
 
-        if($this->role != 'Elegir'){
+        if ($this->role != 'Elegir') {
             foreach ($permissions as $permission) {
                 $role = Role::find($this->role);
                 $HavePermission = $role->hasPermissionTo($permission->name);
-                if($HavePermission) {
+                if ($HavePermission) {
                     $permission->checked = 1;
                 }
             }
         }
 
-        return view('livewire.Assign.index',[
+        return view('livewire.Assign.index', [
             'roles' => Role::orderBy('name', 'asc')->get(),
-            'permissions' => $permissions
+            'permissions' => $permissions,
+            'roleCount' => $roleCount
+
         ])
-        ->extends('layouts.admin')
-        ->section('content')
-        ->section('js');
+            ->extends('layouts.admin')
+            ->section('content')
+            ->section('js');
     }
 
-    public $listeners = ['revokeAll' => 'removeAll'];
+    public $listeners = ['revokeall' => 'RemoveAll'];
 
-    public function RemoveAll(){
-        if($this->role != 'Elegir'){
+    public function RemoveAll()
+    {
+        if ($this->role == 'Elegir') {
             $this->emit('sync-error', 'Selecciona un rol válido');
             return;
         }
 
         $role = Role::find($this->role);
-        $role->syncPermissions([0]);
-        $this->emit('removeAll', "Se revocaron todos los permisos $role->name");
 
+
+        $role->syncPermissions([0]);
+        $this->emit('remove-all', "Se revocaron todos los permisos a $role->name");
     }
 
-    public function SyncAll(){
+    public function SyncAll()
+    {
 
-        if($this->role != 'Elegir'){
+        if ($this->role == 'Elegir') {
             $this->emit('sync-error', 'Selecciona un rol válido');
             return;
         }
@@ -92,26 +102,25 @@ class AssignController extends Component
         $role = Role::find($this->role);
         $permissions = Permission::pluck('id')->toArray();
         $role->syncPermissions($permissions);
-        $this->emit('syncAll', "Se sincronizaron todos los permisos $role->name");
-
+        $this->emit('sync-all', "Se sincronizaron todos los permisos a $role->name");
     }
 
 
-    public function SyncPermissions($state, $permissionName){
+    public function SyncPermissions($state, $permissionName)
+    {
 
-        if($this->role != 'Elegir'){
-                $rolesName = Role::find($this->role);
+        if ($this->role != 'Elegir') {
+            $rolesName = Role::find($this->role);
 
-                if($state){
-                    $rolesName->givePermissionTo($permissionName);
-                    $this->emit('permi', "Permiso asignado correctamente");
-                }else{
-                    $rolesName->revokePermissionTO($permissionName);
-                    $this->emit('permi', "Permiso eliminado correctamente");
-                }
-        } else{
+            if ($state) {
+                $rolesName->givePermissionTo($permissionName);
+                $this->emit('permi-sync', "Permiso asignado correctamente");
+            } else {
+                $rolesName->revokePermissionTo($permissionName);
+                $this->emit('permi-sync', "Permiso eliminado correctamente");
+            }
+        } else {
             $this->emit('permi', "Elige un rol válido");
         }
-
     }
 }

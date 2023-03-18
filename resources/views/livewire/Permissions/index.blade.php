@@ -12,6 +12,11 @@
                                 <i class="mr-1 fas fa-plus"></i>
                                 <span>Crear Nuevo</span>
                             </button>
+
+                            <a href="{{ route('admin.permissions.assign') }}" class="ml-2 btn btn-info" id="assign-button">
+                                <i class="mr-1 fas fa-plus"></i>
+                                <span>Asignar Permisos</span>
+                            </a>
                         </div>
                     </div>
 

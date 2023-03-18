@@ -18,6 +18,7 @@ const mix = require('laravel-mix');
     'resources/css/custom.css',
     'resources/css/style.css',
     'resources/css/app.css',
+    'resources/css/add-styles.css',
     'resources/js/bundles/pretty-checkbox/pretty-checkbox.min.css',
     'resources/js/bundles/izitoast/css/iziToast.min.css'
 ], 'public/css/app.css')

@@ -11,6 +11,7 @@ use App\Http\Livewire\PosController;
 use App\Http\Livewire\ProductController;
 use App\Http\Livewire\ProviderController;
 use App\Http\Livewire\RolesController;
+use App\Http\Livewire\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,7 @@ Route::get('/', function () {
 });*/
 
 Route::get('/admin', DashboardController::class)->name('admin.index');
+Route::get('/admin/usuarios', UserController::class)->name('admin.users');
 Route::get('/admin/categorias', CategoryController::class)->name('admin.categories');
 Route::get('/admin/marcas', BrandController::class)->name('admin.brands');
 Route::get('/admin/productos', ProductController::class)->name('admin.products');
@@ -48,4 +50,4 @@ Route::get('/admin/proveedores', ProviderController::class)->name('admin.provide
 Route::get('/admin/clientes', CustomerController::class)->name('admin.customers');
 Route::get('/admin/roles', RolesController::class)->name('admin.roles');
 Route::get('/admin/permisos', PermissionController::class)->name('admin.permissions');
-Route::get('/admin/asignar', AssignController::class)->name('admin.assign');
+Route::get('/admin/permisos/asignar', AssignController::class)->name('admin.permissions.assign');

@@ -31,7 +31,6 @@
                         <button onclick="Remove()" class="ml-3 btn btn-dark d-block">
                             Remover Todos
                         </button>
-                        <button class="btn btn-primary" id="toastr-2">Launch</button>
                     </div>
 
 
@@ -56,13 +55,13 @@
                                                         <svg class="svg svg-icon" viewBox="0 0 20 20">
                                                             <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
                                                         </svg>
-                                                        <label>{{ $permission->name }}</label>
+                                                        <label>{{ $permission->description }}</label>
                                                     </div>
                                                 </div>
 
                                             </td>
                                             <td class="text-center">
-                                                {{ \App\Models\User::permission($permission->name)->count() }}
+                                                {{ $roleCount }}
                                             </td>
 
                                         </tr>
@@ -92,13 +91,22 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-
-
             window.livewire.on('sync-error', msg => {
 
                 iziToast.error({
-                    title: 'Hello, world!'
-                    , message: 'This awesome plugin is made by iziToast'
+                    title: '¡Error!'
+                    , message: msg
+                    , position: 'topRight'
+                });
+
+
+            });
+
+            window.livewire.on('remove-all', msg => {
+
+                iziToast.success({
+                    title: '¡Correcto!'
+                    , message: msg
                     , position: 'topRight'
                 });
 
@@ -116,11 +124,33 @@
 
             });
 
+            window.livewire.on('permi-sync', msg => {
+
+                iziToast.success({
+                    title: '¡Correcto!'
+                    , message: msg
+                    , position: 'topRight'
+                });
+
+
+            });
+
+            window.livewire.on('permi-remove', msg => {
+
+                iziToast.error({
+                    title: '¡Correcto!'
+                    , message: msg
+                    , position: 'topRight'
+                });
+
+
+            });
+
             window.livewire.on('sync-all', msg => {
 
-                iziToast.show({
-                    title: 'Hello, world!'
-                    , message: 'This awesome plugin is made by iziToast'
+                iziToast.success({
+                    title: '¡Correcto!'
+                    , message: msg
                     , position: 'topRight'
                 });
 
@@ -132,8 +162,8 @@
 
         function Remove(id) {
             Swal.fire({
-                title: '¿Estás seguro de eliminar el registro?'
-                , text: "¡Al eliminarlo no hay opción a recuperarlo!"
+                title: '¿Estás seguro de eliminar los permisos asignados?'
+                , text: "¡Al eliminarlo podrá asignarlo nuevamente!"
                 , icon: 'warning'
                 , showCancelButton: true
                 , confirmButtonColor: '#3085d6'
@@ -141,13 +171,10 @@
                 , confirmButtonText: 'Sí, quiero eliminarlo'
                 , cancelButtonText: 'Cancelar'
             }).then((result) => {
+
                 if (result.isConfirmed) {
-                    window.livewire.emit('revokeAll')
-                    Swal.fire(
-                        '¡Eliminado!'
-                        , '¡Su registro fue eliminado con éxito!'
-                        , 'success'
-                    )
+                    window.livewire.emit('revokeall')
+                    Swal.close();
                 }
             })
         }

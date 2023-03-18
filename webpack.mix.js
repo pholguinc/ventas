@@ -17,13 +17,17 @@ const mix = require('laravel-mix');
     'resources/css/components.css',
     'resources/css/custom.css',
     'resources/css/style.css',
-    'resources/css/app.css'
+    'resources/css/app.css',
+    'resources/js/bundles/pretty-checkbox/pretty-checkbox.min.css',
+    'resources/js/bundles/izitoast/css/iziToast.min.css'
 ], 'public/css/app.css')
 
 .scripts([
     'resources/js/theme/app.min.js',
     'resources/js/theme/custom.js',
     'resources/js/theme/scripts.js',
+    'resources/js/bundles/izitoast/js/iziToast.min.js',
+    'resources/js/theme/toastr.js'
 ], 'public/js/app.js')
 
 .copy('resources/fonts', 'public/fonts')

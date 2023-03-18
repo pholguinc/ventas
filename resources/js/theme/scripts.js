@@ -1,8 +1,11 @@
 "use strict";
 
+
 $(window).on("load", function () {
   $(".loader").fadeOut("slow");
 });
+
+
 
 feather.replace();
 // Global
@@ -528,6 +531,7 @@ $(function () {
       });
     }
   }
+
 
   // Timepicker
   if (jQuery().timepicker && $(".timepicker").length) {

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone');
             $table->string('image', 50)->nullable();
+            $table->enum('profile', ['Admin', 'Empleado'])->default('Admin');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

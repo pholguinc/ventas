@@ -32,6 +32,7 @@ class UserFactory extends Factory
             'dni' => $this->faker->randomNumber(8,true),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'phone' => $this->faker->phoneNumber(),
+            'profile' => $this->faker->randomElement(['Admin', 'Empleado']),
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),

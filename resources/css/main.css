@@ -78,3 +78,19 @@ div#result{
 h1#head-total{
     color: #8BC34A !important;
 }
+
+
+span#dash i {
+    transition: transform 0.2s ease-out;
+}
+
+span#dash i:hover {
+    transform: translateX(70%);
+    cursor: pointer;
+}
+
+
+a#link-dash {
+    color: #fff;
+    text-decoration: none;
+}

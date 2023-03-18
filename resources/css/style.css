@@ -1966,6 +1966,26 @@
     color: #fff !important
 }
 
+.l-bg-red-dark {
+    background: linear-gradient(to right, #52050c 0%, #ffaaab 100%) !important;
+    color: #fff;
+}
+
+.l-bg-red-dark .content .text,
+.l-bg-red-dark .content .number {
+    color: #fff !important
+}
+
+.l-bg-dark-gray{
+    background: linear-gradient(to right, #262525 0%, #b3aeae 100%) !important;
+    color: #fff
+}
+
+.l-bg-dark-gray .content .text,
+.l-bg-dark-gray .content .number {
+    color: #fff !important
+}
+
 .l-bg-purple {
     background: linear-gradient(135deg, #9a56ff 0%, #e36cd9 100%) !important;
     color: #fff
@@ -1987,7 +2007,7 @@
 }
 
 .l-bg-yellow {
-    background: linear-gradient(to right, #f6e384, #ffd500) !important;
+    background: linear-gradient(to right, #d7c151, #ffd500) !important;
     color: #fff
 }
 

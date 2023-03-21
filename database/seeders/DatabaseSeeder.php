@@ -15,11 +15,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
+
     public function run()
     {
         $this->call(UserSeeder::class);
@@ -30,7 +26,14 @@ class DatabaseSeeder extends Seeder
         Provider::factory(30)->create();
         Customer::factory(30)->create();
         //SaleDetail::factory(100)->create();
-        //Sale::factory(100)->create();
+        Sale::factory(5)->create()->each(function($sale){
+            $sale->saledetails()->create([
+                'product_id' => Product::all()->random()->id,
+                'sale_id' => $sale->id,
+                'quantity'=> $sale->items,
+                'price'=> $sale->total / $sale->items,
+            ]);
+        });
 
     }
 }

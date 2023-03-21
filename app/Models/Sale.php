@@ -13,4 +13,8 @@ class Sale extends Model
         'created_at',
         'updated_at'
     ];
+
+     public function saledetails(){
+       return $this->hasMany(SaleDetail::class);
+    }
 }

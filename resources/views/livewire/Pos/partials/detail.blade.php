@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="card-body">
-        @if ($total > 0)
+
         <div class="table-responsive" style="max-height:650px; overflow:hidden;">
             <table class="table table-bordered table-striped mt-1">
                 <thead class="text-white table-dark">
@@ -65,12 +65,8 @@
                 </tbody>
             </table>
         </div>
-        @else
-        <h5 class="text-center text-danger text-muted">AGREGAR PRODUCTOS A LA VENTA</h5>
-        @endif
 
-        <div wire:loading.inline class="text-center text-danger">
-            Guardando Venta...
-        </div>
+
+
     </div>
 </div>

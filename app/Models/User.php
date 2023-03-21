@@ -27,13 +27,21 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'lastname',
-        'dni',
         'email',
+        'dni',
         'password',
-        'image',
         'profile',
+        'phone',
+        'status',
+
     ];
+
+    public function getImagenAttribute(){
+        if($this->image != null)
+            return (file_exists('storage/users/' . $this->image) ? $this->image : 'noimage.png');
+        else
+           return 'noimage.png';
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,9 +50,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
+        'remember_token'
     ];
 
     /**

@@ -32,16 +32,19 @@ class PosController extends Component
     }
 
 
+
     public function render()
     {
+        $saledetails = Sale::all();
         return view('livewire.Pos.index', [
-            'cart' => Cart::getContent()->sortBy('name')
+            'cart' => Cart::getContent()->sortBy('name'),
+            'saledetails' => $saledetails
         ])
         ->extends('layouts.admin')
         ->section('content')
         ->section('js');
     }
 
-    
+
 
 }

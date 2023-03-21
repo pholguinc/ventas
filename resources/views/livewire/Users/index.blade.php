@@ -23,11 +23,12 @@
                             <table class="table table-striped table-hovered">
                                 <thead class="table-dark">
                                     <th width="100px" class="text-center text-light">ID</th>
-                                    <th class="text-center text-light">IMAGE</th>
                                     <th class="text-center text-light">NOMBRE</th>
                                     <th class="text-center text-light">EMAIL</th>
                                     <th class="text-center text-light">DNI</th>
                                     <th class="text-center text-light">TELÉFONO</th>
+                                    <th class="text-center text-light">PERFIL</th>
+                                    <th class="text-center text-light">STATUS</th>
                                     <th class="text-center text-light">ACCIONES</th>
                                 </thead>
                                 <tbody>
@@ -35,13 +36,16 @@
                                     @foreach ($users as $user)
                                     <tr>
                                         <td class="text-center">{{ $user->id }}</td>
-                                        <td>
-                                            <img id="light-image" src="{{ asset('storage/products/' . $user->imagen) }}" alt="{{ $user->name }}" class="img-fluid" width="70" height="80">
-                                        </td>
                                         <td>{{ $user->name.' '.$user->lastname }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->dni }}</td>
                                         <td>{{ $user->phone }}</td>
+                                        <td>{{ $user->profile }}</td>
+                                        <td>
+                                            <div class="badge {{ $user->status == 'ACTIVE' ? 'badge-success' : 'badge-danger' }}">
+                                                {{ $user->status }}
+                                            </div>
+                                        </td>
                                         <td width="150px">
                                             <a href="javascript:void(0);" wire:click="Edit({{ $user->id }})" class="text-white btn btn-primary">
                                                 <i class="fas fa-edit"></i>
@@ -77,5 +81,35 @@
 
         </div>
     </div>
+    @include('livewire.Users.form')
 
 </div>
+
+<script>
+    const realFileBtn = document.getElementById("real-file");
+    const imageFile = document.getElementById("image-file");
+    const customTxt = document.getElementById("custom-text");
+
+    imageFile.addEventListener("click", function() {
+        realFileBtn.click();
+    })
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        window.livewire.on('show-modal', msg => {
+            $('#modal').modal('show');
+        });
+
+        window.livewire.on('user-added', msg => {
+            Swal.fire({
+                icon: 'success'
+                , title: 'Correcto'
+                , text: '¡El registro fue creado con éxito!'
+            })
+            $('#modal').modal('hide');
+        });
+
+
+    });
+
+</script>

@@ -2,7 +2,7 @@
     @include('components.Modal.modalHead')
 
     <div class="row">
-        <div class="col-sm-12 col-md-4">
+        <div class="col-sm-12 col-md-6">
             <div class="form-group">
                 <label style="font-size:0.9rem;">
                     <strong>RUC</strong>
@@ -38,7 +38,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-sm-12 col-md-8">
+        <div class="col-sm-12 col-md-6">
             <div class="form-group">
                 <label style="font-size:0.9rem;">
                     <strong>Nombre</strong>

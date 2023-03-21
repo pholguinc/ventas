@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('lastname');
             $table->string('dni');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -22,9 +21,11 @@ return new class extends Migration
             $table->string('phone');
             $table->string('image', 50)->nullable();
             $table->enum('profile', ['Admin', 'Empleado'])->default('Admin');
-            $table->rememberToken();
+            $table->enum('status', ['ACTIVE', 'LOCKED'])->default('ACTIVE');
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+
+            $table->rememberToken();
             $table->timestamps();
         });
     }

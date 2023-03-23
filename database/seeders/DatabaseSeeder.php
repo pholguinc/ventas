@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
                 'product_id' => Product::all()->random()->id,
                 'sale_id' => $sale->id,
                 'quantity'=> $sale->items,
-                'price'=> $sale->total / $sale->items,
+                'price'=> $sale->total/$sale->items,
             ]);
         });
 

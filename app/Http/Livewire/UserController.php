@@ -110,15 +110,20 @@ class UserController extends Component
 
         $this->validate($rules, $messages);
 
-       User::create([
+       $user = User::create([
             'name' => $this->name,
             'dni' => $this->dni,
             'email' => $this->email,
             'phone' => $this->phone,
             'status' => $this->status,
             'profile' =>$this->profile,
-            'password' => $this->password
+            'password' => bcrypt($this->password)
         ]);
+
+        dd($user);
+        $user->save();
+
+
 
         $this->resetUI();
         $this->emit('user-added', 'Usuario registrado');

@@ -86,14 +86,6 @@
 </div>
 
 <script>
-    const realFileBtn = document.getElementById("real-file");
-    const imageFile = document.getElementById("image-file");
-    const customTxt = document.getElementById("custom-text");
-
-    imageFile.addEventListener("click", function() {
-        realFileBtn.click();
-    })
-
     document.addEventListener('DOMContentLoaded', function() {
 
         window.livewire.on('show-modal', msg => {
@@ -108,7 +100,6 @@
             })
             $('#modal').modal('hide');
         });
-
 
     });
 
